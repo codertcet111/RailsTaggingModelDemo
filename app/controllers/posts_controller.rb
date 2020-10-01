@@ -1,11 +1,7 @@
 class PostsController < ApplicationController
   skip_forgery_protection
   def index
-    if params[:tag]
-      @posts = Post.tagged_with(params[:tag])
-    else
-      @posts = Post.all
-    end
+    @posts = params[:tag] ? Post.tagged_with(params[:tag]) : Post.all
   end
 
   def create
